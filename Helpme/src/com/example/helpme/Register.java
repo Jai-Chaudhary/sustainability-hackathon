@@ -23,9 +23,9 @@ public class Register extends Activity implements OnClickListener {
 	
 	EditText usernameet;
 	EditText passwordet;
-	EditText ename,enumber;
+	EditText ename,enumber,pnumber;
 	Button login,register;
-	String username,password,bloodtypetext,enametext,enumbertext;
+	String username,password,bloodtypetext,enametext,enumbertext,pnumbertext;
 	private Spinner spinner1,spinner2;
 	
 	protected void onCreate(Bundle savedInstanceState)
@@ -40,6 +40,7 @@ public class Register extends Activity implements OnClickListener {
 		  spinner1=(Spinner) findViewById(R.id.spinner1);
 		  spinner2 = (Spinner) findViewById(R.id.spinner2);
 		  ename=(EditText) findViewById(R.id.ename);
+		  pnumber=(EditText) findViewById(R.id.pnumber);
 		  enumber=(EditText) findViewById(R.id.enumber);
 		  
 				
@@ -89,12 +90,14 @@ public class Register extends Activity implements OnClickListener {
 			  bloodtypetext=String.valueOf(spinner1.getSelectedItem());
 			  enametext=ename.getText().toString();
 			  enumbertext=enumber.getText().toString();
+			  pnumbertext=pnumber.getText().toString();
 			
 			  user.setUsername(username);
 			  user.setPassword(password);
 			  user.put("Ename", enametext);
 			  user.put("Enumber", enumbertext);
 			  user.put("Bloodtype", bloodtypetext);
+			  user.put("Pnumber", pnumbertext);
 			  user.put("Type",  String.valueOf(spinner2.getSelectedItem()));
 				
 			  user.signUpInBackground(new SignUpCallback(){

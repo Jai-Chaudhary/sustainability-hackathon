@@ -33,9 +33,7 @@ public class Login extends Activity implements OnClickListener{
 		register=(Button) findViewById(R.id.register);
 		register.setOnClickListener(this);
 		
-		
 		//parse initialized with key and app id
-		
 		Parse.initialize(this, "DaeYRB80R0WhaY3ICgIrFpxSCZRNF99HFTLRn6sA", "YfIOGj1lCdBcc6QPDuPVeK4VHhZKiiSKJU6YVTEs");
 			
 		

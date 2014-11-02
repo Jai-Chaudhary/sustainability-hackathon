@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
     android:baselineAligned="false"
     android:measureWithLargestChild="false"
     android:orientation="vertical"
-    android:paddingTop="15dp" >
+    android:paddingTop="15dp"
+    android:background="#ff0000" >
 
     <TextView
         android:id="@+id/usernametext"
         android:layout_width="168dp"
         android:layout_height="wrap_content"
-        android:text="Username" />
+        android:text="Username" 
+        android:textColor="#FFFFFF"/>
 
     <EditText
         android:id="@+id/username"
@@ -27,7 +29,8 @@
         android:id="@+id/passwordtext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Password" />
+        android:text="Password" 
+        android:textColor="#FFFFFF"/>
 
     <EditText
         android:id="@+id/password"
@@ -39,12 +42,14 @@
         android:id="@+id/login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Login" />
+        android:text="Login" 
+        android:textColor="#FFFFFF"/>
 
     <Button
         android:id="@+id/register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Register" />
+        android:text="Register" 
+        android:textColor="#FFFFFF"/>
 
 </LinearLayout>
