@@ -48,7 +48,6 @@ public class Login extends Activity implements OnClickListener{
 		{   
 			Intent intent=new Intent(Login.this, Register.class);
 			startActivity(intent);
-			
 		}
 		
 		if(v==login)		
@@ -57,14 +56,29 @@ public class Login extends Activity implements OnClickListener{
 			username=usernameet.getText().toString();
 			password=passwordet.getText().toString();
 			
+			
 			ParseUser.logInInBackground(username, password, new LogInCallback(){
 				
 				public void done(ParseUser username,ParseException e)
 				{
 					if(e==null)
-					{Toast.makeText(Login.this, "Username is "+username.getUsername().toString(), Toast.LENGTH_LONG).show();
-					Intent intent=new Intent(Login.this, Map.class);
-					startActivity(intent);
+					{
+						String type=username.get("Type").toString();
+						
+						
+						//Toast.makeText(Login.this, "Username is "+username.getUsername().toString()+"Type :" +type, Toast.LENGTH_LONG).show();
+					
+						if(type.equalsIgnoreCase("Need Help"))
+						{
+							Intent intent=new Intent(Login.this, Main.class);
+							startActivity(intent);
+						}
+						
+						else
+						{
+				            Intent intent=new Intent(Login.this, MainSaviour.class);
+					        startActivity(intent);
+						}
 					}
 					
 					else

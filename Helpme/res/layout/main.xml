@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" 
+    android:background="#ff0000">
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Click the Button below to Call for HELP!"
+        android:textColorLink="@android:color/white"
+        android:textStyle="bold"
+        android:textColor="#FFFFFF" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="This button shall alert closest community workers, family members as well as the police vans"
+        android:textColorHint="@android:color/white"
+        android:textStyle="italic" 
+        android:textColor="#FFFFFF"/>
+
+    <Button
+        android:id="@+id/help"
+        android:layout_width="159dp"
+        android:layout_height="113dp"
+        android:layout_gravity="center"
+        android:text="HELP!"
+        android:textColor="#FFFFFF" />
+
+</LinearLayout>
