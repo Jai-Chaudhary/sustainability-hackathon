@@ -44,6 +44,30 @@ public class AlarmReceiver extends BroadcastReceiver
         	 type=ParseUser.getCurrentUser().get("Type").toString();
         	 
         	 
+        	 if(type.equalsIgnoreCase("Need Help"))
+        	 {
+        		 
+        			ParseQuery<ParseObject> query = ParseQuery.getQuery("_User");
+        	    	 
+             	    // Retrieve the object by id
+             	      query.getInBackground(userid, new GetCallback<ParseObject>() {
+             	      public void done(ParseObject victim, ParseException e) {
+             	        if (e == null) {
+             	     
+             	        	
+             	          victim.put("lat",latitudenew);
+             	          victim.put("long",longitudenew);
+             	          victim.saveInBackground();
+             	        }
+             	        
+             	        else
+             	        {
+             	        	System.out.println("Error inside need help is "+e.toString());
+             	        }
+             	      }
+             	    });
+        	 }
+        	 
         	 if(type.equalsIgnoreCase("Police Officer"))
         	 {
         	ParseQuery<ParseObject> query=ParseQuery.getQuery("police");
@@ -90,7 +114,7 @@ public class AlarmReceiver extends BroadcastReceiver
         		
              }// end of if police officer
         	 
-        	 else
+        	 else if (type.equalsIgnoreCase("Community Helper"))
         	 {
         		 ParseQuery<ParseObject> query=ParseQuery.getQuery("Community");
               	query.whereEqualTo("userid", userid);

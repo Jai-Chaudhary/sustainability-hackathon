@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
     android:baselineAligned="false"
     android:measureWithLargestChild="false"
     android:orientation="vertical"
-    android:paddingTop="15dp" >
+    android:paddingTop="15dp" 
+    android:background="#ff0000">
 
     <TextView
         android:id="@+id/usernametext"
         android:layout_width="168dp"
         android:layout_height="wrap_content"
-        android:text="Username" />
+        android:text="Username:" 
+        android:textColor="#FFFFFF"/>
 
     <EditText
         android:id="@+id/usernameregister"
@@ -27,30 +29,47 @@
         android:id="@+id/passwordtext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Password" />
+        android:text="Password:" 
+        android:textColor="#FFFFFF"/>
 
     <EditText
         android:id="@+id/passwordregister"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textPassword" />
+    
+    <TextView
+        android:id="@+id/phnumbertext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Your Mobile Number:"
+        android:textColor="#FFFFFF" />
+
+    <EditText
+        android:id="@+id/pnumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="phone" />
 
      <TextView
         android:id="@+id/bloodtypetext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Blood Type:" />
+        android:text="Blood Type:" 
+        android:textColor="#FFFFFF"/>
 
      <Spinner
          android:id="@+id/spinner1"
          android:layout_width="match_parent"
-         android:layout_height="wrap_content" />
+         android:layout_height="wrap_content" 
+         android:textColor="#FFFFFF"/>
     
      <TextView
         android:id="@+id/Enametext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Emergency Contact Name:" />
+        android:text="Emergency Contact Name:(If Need Help)" 
+        android:textColor="#FFFFFF"/>
 
     <EditText
         android:id="@+id/ename"
@@ -62,7 +81,8 @@
         android:id="@+id/Enumbertext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Emergency Contact Phone Number:" />
+        android:text="Emergency Contact Phone Number:(If Need Help)" 
+        android:textColor="#FFFFFF"/>
 
     <EditText
         android:id="@+id/enumber"
@@ -75,7 +95,8 @@
         android:id="@+id/Type"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Type of User:" />
+        android:text="Type of User:" 
+        android:textColor="#FFFFFF"/>
      
     <Spinner
         android:id="@+id/spinner2"

@@ -30,5 +30,32 @@
         android:layout_gravity="center"
         android:text="HELP!"
         android:textColor="#FFFFFF" />
+    
+     <TextView
+        android:id="@+id/Policeman"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textColorHint="@android:color/white"
+        android:textStyle="bold" 
+        android:textColor="#FFFFFF"/>
+     
+     <TextView
+        android:id="@+id/Community"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textColorHint="@android:color/white"
+        android:textStyle="bold" 
+        android:textColor="#FFFFFF"/>
+     
+     <TextView
+        android:id="@+id/Family"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textColorHint="@android:color/white"
+        android:textStyle="bold" 
+        android:textColor="#FFFFFF"/>
 
 </LinearLayout>
