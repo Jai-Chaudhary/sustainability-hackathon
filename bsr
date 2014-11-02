@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Google Map Template with Marker at User's Position</title>
+    <style>
+        html, body, #map-canvas {
+        height: 100%;
+        margin: 0px;
+        padding: 0px
+        }
+    </style>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&key=AIzaSyDI6FUHW1PJWSu2AphA2isyX7fzLDdJXr0"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>    
+    <script src="//www.parsecdn.com/js/parse-1.3.1.min.js"></script>
+    <script>
+    function getParameterByName(name) {
+        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+            results = regex.exec(location.search);
+        return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+    }
+
+    Parse.initialize("DaeYRB80R0WhaY3ICgIrFpxSCZRNF99HFTLRn6sA", "Qep34MCMq7juhSBDKY0iXxLK4Nk8gcGGiGi9V2wW");
+    var User = Parse.Object.extend("User");
+    var query = new Parse.Query(User);
+    var locations = {'user': [],'helper': []};
+    var map;
+    var bounds;
+    var infoWindow ;
+
+    function setMarkers(map, locations) {
+      // Add markers to the map
+
+      // Marker sizes are expressed as a Size of X,Y
+      // where the origin of the image (0,0) is located
+      // in the top left of the image.
+
+      // Origins, anchor positions and coordinates of the marker
+      // increase in the X direction to the right and in
+      // the Y direction down.
+      var image = {
+        // This marker is 20 pixels wide by 32 pixels tall.
+        size: new google.maps.Size(20, 32),
+        // The origin for this image is 0,0.
+        origin: new google.maps.Point(0,0),
+        // The anchor for this image is the base of the flagpole at 0,32.
+        anchor: new google.maps.Point(0, 32)
+      };
+      // Shapes define the clickable region of the icon.
+      // The type defines an HTML &lt;area&gt; element 'poly' which
+      // traces out a polygon as a series of X,Y points. The final
+      // coordinate closes the poly by connecting to the first
+      // coordinate.
+      var shape = {
+          coords: [1, 1, 1, 20, 18, 20, 18 , 1],
+          type: 'poly'
+      };
+        var user = locations['user'];
+        // bounds.extend(beach);
+        var myLatLng = new google.maps.LatLng(user[1], user[2]);
+        var userMarker = new google.maps.Marker({
+            position: myLatLng,
+            map: map,
+            shape: shape,
+            title: user[0],
+            zIndex: user[3]
+        });
+
+        infoWindow = new google.maps.InfoWindow(), userMarker, 0;
+
+        // Allow each userMarker to have an info window    
+        google.maps.event.addListener(userMarker, 'click', (function(userMarker) {
+            return function() {
+                infoWindow.setContent(user[0]);
+                infoWindow.open(map, userMarker);
+                google.maps.event.addListenerOnce( userMarker, "visible_changed", function() {
+                    infoWindow.close();
+                });
+            }
+        })(userMarker));
+
+        var helper = locations['helper'];
+        // bounds.extend(beach);
+        var myLatLng = new google.maps.LatLng(helper[1], helper[2]);
+        var helperMarker = new google.maps.Marker({
+            position: myLatLng,
+            map: map,
+            shape: shape,
+            title: helper[0],
+            zIndex: helper[3],
+            icon: 'green.png'
+        });
+
+        infoWindow = new google.maps.InfoWindow(), helperMarker, 1;
+
+        // Allow each helperMarker to have an info window    
+        google.maps.event.addListener(helperMarker, 'click', (function(helperMarker) {
+            return function() {
+                infoWindow.setContent(helper[0]);
+                infoWindow.open(map, helperMarker);
+                // google.maps.event.addListenerOnce( helperMarker, "visible_changed", function() {
+                //     infoWindow.close();
+                // });
+            }
+        })(helperMarker));
+
+        // Automatically center the map fitting all markers on the screen
+        // map.fitBounds(bounds);
+    }  
+
+    function UserLocation() {
+        query.get(getParameterByName('id'), {
+            success: function(user) {
+            // The object was retrieved successfully.
+                locations['user'] = [ 'Location of ' + user.get('username') + ' At time ' + user.updatedAt, user.get('lat'), user.get('long')];
+                var mapOptions = {
+                    zoom: 15,
+                    center: new google.maps.LatLng(locations['user'][1], locations['user'][2])
+                }
+                map = new google.maps.Map(document.getElementById('map-canvas'),
+                                            mapOptions);
+                // bounds = new google.maps.LatLngBounds();
+
+                      // HTML5/W3C Geolocation
+
+                setMarkers(map, locations);
+            },
+            error: function(object, error) {
+               // The object was not retrieved successfully.
+                // error is a Parse.Error with an error code and message.
+            }
+        });
+    }
+
+    function initialize() {
+
+        if ( navigator.geolocation ) {
+            navigator.geolocation.getCurrentPosition( HelperLocation );
+            setInterval(navigator.geolocation.getCurrentPosition( HelperLocation ), 15000);
+        }
+        // Callback function for asynchronous call to HTML5 geolocation
+        function HelperLocation( position )
+        {
+            locations['helper'] = ["This is your Location", position.coords.latitude, position.coords.longitude];
+            setMarkers(map, locations);
+        }
+
+        UserLocation();
+        setInterval(UserLocation, 15000);
+
+    }
+
+    google.maps.event.addDomListener(window, 'load', initialize);
+    
+    </script>
+</head>
+<body> 
+    <!-- Dislay Google map here -->
+    <div id='map-canvas' ></div>
+</body>
+</html>
